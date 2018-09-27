@@ -67,6 +67,7 @@ class EmployeeController extends Controller
                     }
                     $user->UserName = $userName;
                     $flag = $employee->save();
+                    $user->UserID = $employee->id;
                     $flag2 = $user->save();
                     $idCreated = array(
                         'id' => $employee->id, 

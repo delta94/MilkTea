@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Users;
 use Illuminate\Http\Request;
+use Firebase\JWT\JWT;
 use DB;
 
 class UsersController extends Controller
@@ -15,7 +16,7 @@ class UsersController extends Controller
     }
     public function Login(Request $request)
     {
-        try {
+        // try {
 //      chú ý  phải có using mới xài được DB::
 //        $data = 'ok';
 
@@ -32,20 +33,21 @@ class UsersController extends Controller
                 if ($data->count() > 0) {
                     $objEmp = $data->get(0);
 
+                    $key = "thanhnhi";
 
                     \Session::put('account', $objEmp);
+                    $jwt = JWT::encode($objEmp,$key);
 
-
-                    return \response()->json(array('code' => 'ok', 'value' => 'ok'));
+                    return \response()->json(array('code' => 'ok', 'value' => $jwt));
                 } else {
                     return \response()->json(array('code' => 'alert', 'value' => 'Tài khoản không tồn tại'));
                 }
             } else {
                 return \response()->json(array('code' => 'alert', 'value' => 'Tài khoản hoặc mặt khẩu không chính xác !'));
             }
-        } catch (\Exception $e) {
-            return \response()->json(array('code' => 'error', 'value' => $e));
-        }
+        // } catch (\Exception $e) {
+        //     return \response()->json(array('code' => 'error', 'value' => $e));
+        // }
 //
 
     }
@@ -54,14 +56,24 @@ class UsersController extends Controller
     public function Logout()
     {
         try {
-//      chú ý  phải có using mới xài được DB::
-//        $data = 'ok';
 
+                $arrJson = json_decode($request->getContent(), true);
+                $o = (object)$arrJson;
+                if ($this->t->NotNullOrEmpty($o) == true) {
 
-            Session::remove('account');
+                    if (isset($o->_token)) {
+                        $emp = $this->t->JWT_Decode($o->_token);
 
+                        return \response()->json(array('code' => 'ok', 'value' => 'ok'));
 
-            return \response()->json(array('code' => 'ok', 'value' => 'ok'));
+                    } else {
+
+                        return \response()->json(array('code' => 'alert', 'value' => 'Vui lòng đăng nhập'));
+                    }
+                } else {
+
+                    return \response()->json(array('code' => 'alert', 'value' => 'Tham số truyền vào bị rỗng'));
+                }
 
 
         } catch (\Exception $e) {

@@ -45,12 +45,12 @@
         -webkit-border-radius: 40%; }
       .head .menu .txt .log {
         color: white; }
-  .head .head_content .image {
+  .head_content .image {
     position: relative; }
-    .head .head_content .image .img-carou {
+    .head_content .image .img-carou {
       width: 100%;
       height: 950px; }
-    .head .head_content .image .caption {
+    .head_content .image .caption {
       width: 50%;
       margin: auto;
       position: absolute;
@@ -60,12 +60,12 @@
       text-align: center;
       font-weight: bold;
       color: white; }
-      .head .head_content .image .caption .button {
+      .head_content .image .caption .button {
         margin-top: 100px; }
-        .head .head_content .image .caption .button .btn {
+        .head_content .image .caption .button .btn {
           width: 90%;
           padding: 10px; }
-    .head .head_content .image h6 {
+    .head_content .image h6 {
       margin-top: 40px;
       margin-bottom: 50px;
       font-size: 30px;

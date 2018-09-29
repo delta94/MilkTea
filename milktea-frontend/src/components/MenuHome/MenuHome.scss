@@ -1,0 +1,18 @@
+.menu-home{
+    background-color: #ececec;
+    .btn.btn-success{
+        margin-top: 50px;
+        margin-left: 250px;
+        &:hover{
+            transform: scale(1.5);
+        }
+    }
+    h3{
+        margin-top: 40px;
+    }
+    p{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}
+

@@ -1,0 +1,15 @@
+.header{
+    background-color: #34bbec;
+    #navbarSupportedContent{
+        margin-left:700px;  
+    }
+    a.nav-brand{
+        
+    }
+    a.nav-link{
+        color: black;
+        &:hover{
+            color: red;
+        }
+    }
+}

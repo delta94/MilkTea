@@ -1,0 +1,14 @@
+.menu-home {
+  background-color: #ececec; }
+  .menu-home .btn.btn-success {
+    margin-top: 50px;
+    margin-left: 250px; }
+    .menu-home .btn.btn-success:hover {
+      transform: scale(1.5); }
+  .menu-home h3 {
+    margin-top: 40px; }
+  .menu-home p {
+    margin-top: 20px;
+    margin-bottom: 20px; }
+
+/*# sourceMappingURL=MenuHome.css.map */

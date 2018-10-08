@@ -18,7 +18,7 @@ class ProductController extends Controller
 	public function Get_All_Product()
 	{
 		
-		return DB::table('Product')->get();
+		return DB::select(DB::raw("exec Select_All_Product"));
 		
 	}
 	public function Get_All_Product_Search($keySearch)
@@ -36,21 +36,20 @@ class ProductController extends Controller
         //         $emp = \Session::get('account');
                 $arrJson = json_decode($request->getContent(), true);
                 $o = (object)$arrJson;
-
+                
                 if ($this->t->NotNullOrEmpty($o)) {
-
                     $product = new Product();
-                    $product->Name = $o->_Name;
-					$product->Phone = $o->_Phone;
-					$product->Address = $o->_Address;
 
-                    $flag = $product->save();
+                    $product = DB::insert(
+                        'exec Insert_Product ?, ?, ?',
+                        [$o->_Name, $o->_Phone, $o->_Address]
+                    );
 
-                    $createdID = $product->id;
 
+                    $flag = $product;
 
                     if ($flag == true) {
-                        return \response()->json(array('code' => 'ok', 'value' => $createdID));
+                        return \response()->json(array('code' => 'ok'));
                     } else {
                         return \response()->json(array('code' => 'alert', 'value' => "Thêm nguyên liệu thất bại vui lòng kiểm tra lại"));
 

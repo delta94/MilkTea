@@ -36,7 +36,7 @@
         background-color: white;
         border: 2px solid white; }
       .head .menu .txt .btn {
-        margin-top: 7px;
+        /* margin-top: 4px; */
         border-radius: 40%;
         -webkit-border-radius: 40%;
         -moz-border-radius: 40%;
@@ -383,5 +383,35 @@
     bottom: 50px;
     right: 50px;
     color: red; }
+.milktea .card_img {
+  width: 260px;
+  height: 240px; }
+  .Menu {
+    margin-top: 100px;
+}
+.card-milktea{
+  width: 260px;
+}
+.milktea.text-center {
+  margin-left: 65px;
+}
+.bill {
+  margin-top: 120px;
+  display: flex; }
 
-/*# sourceMappingURL=style.css.map */
+.bill .bill_content .img img {
+  width: 100px;
+  height: 100px; }
+
+.bill_content {
+  display: flex;
+  border: 1px solid black;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  padding-right: 315px;
+  padding-top: 20px;
+  padding-left: 10px; 
+  padding-bottom: 10px;}

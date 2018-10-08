@@ -14,11 +14,6 @@ const menus = [
     exact : false
   },
   {
-    name : "Tin tức",
-    to : "/News",
-    exact : false
-  },
-  {
     name : "Đặt hàng",
     to : "/Order",
     exact : false
@@ -38,7 +33,7 @@ const MenuLink = ({label, to, active}) =>{
       children ={ ({match}) =>{
         var active = match ? "active" : "";
         return(
-          <li className={"text-menu nav-item " + {active}}>
+          <li className={`text-menu nav-item " + ${active}`}>
             <Link to={to} className="nav-link">
               {label}
             </Link>
@@ -48,7 +43,6 @@ const MenuLink = ({label, to, active}) =>{
     />
   );
 }
-
 
 class Header extends Component {
   render() {
@@ -67,8 +61,8 @@ class Header extends Component {
                   <button type="button" className="btn btn-white ml-20" data-toggle="collapse" data-target="#demo">Login
                     in</button>
                   <div id="demo" className="collapse">
-                    <a className="log" href>Đăng ký</a>
-                    <a className="log" href>Đăng nhập</a>
+                    <a className="log" >Đăng ký</a>
+                    <a className="log" >Đăng nhập</a>
                   </div>
                 </li>
               </ul>
@@ -80,7 +74,7 @@ class Header extends Component {
 
     );
   }
-  showMenu =(menus)=>{
+  showMenu = (menus)=>{
     var result = null;
     if(menus.length > 0){
       result = menus.map((menu, index)=>{

@@ -48,7 +48,7 @@ showCount = () =>{
 }
   render() {
     return (
-      <div className="Menu">
+      <div className="milk-tea">
         <div className="milktea text-center">
         <div className="card-milktea">
             <img className="card_img card-img-top" src="./img/m6.jpg" alt="Card image cap" />

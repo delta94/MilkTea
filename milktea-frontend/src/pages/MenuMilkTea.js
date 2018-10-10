@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import Menu from './../components/Menu/Menu';
+import MilkTea from './../components/MilkTea/MilkTea';
 
 class MenuMilkTea extends Component {
   render() {
     return (
-      <div className="Menu row">
-        <Menu />
-        <Menu />
-        <Menu />
-        <Menu />
-        <Menu />
-        <Menu />
+      <div className="list-milk-tea row">
+        <MilkTea />
+        <MilkTea />
+        <MilkTea />
+        <MilkTea />
+        <MilkTea />
+        <MilkTea />
       </div>
     );
   }

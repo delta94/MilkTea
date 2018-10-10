@@ -24,7 +24,7 @@ class MenuHome extends Component {
                   <div className="button input-group mb-3">
                     <input type="text" className="form-control" placeholder="Tên thức uống..." />
                     <div className="search input-group-append">
-                      <button name className="btn bg-success">Search</button>
+                      <button className="btn bg-success">Search</button>
                     </div>
                   </div>
                 </div>

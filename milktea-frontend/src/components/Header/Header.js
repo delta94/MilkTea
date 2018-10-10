@@ -61,8 +61,8 @@ class Header extends Component {
                   <button type="button" className="btn btn-white ml-20" data-toggle="collapse" data-target="#demo">Login
                     in</button>
                   <div id="demo" className="collapse">
-                    <a className="log" >Đăng ký</a>
-                    <a className="log" >Đăng nhập</a>
+                    <Link to="/Login" className="log nav-link">Đăng nhập</Link>
+                    <Link to="/SignUp" className="log nav-link">Đăng ký</Link>
                   </div>
                 </li>
               </ul>

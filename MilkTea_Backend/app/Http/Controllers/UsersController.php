@@ -27,21 +27,22 @@ class UsersController extends Controller
 
 
             if ($this->t->NotNullOrEmpty($o) == true) {
-
-
-                $data = DB::table('Users')->where([['UserName', '=', $o->_UserName], ['Password', '=', md5(sha1($o->_Password))]])->get();
-                if ($data->count() > 0) {
-                    $objEmp = $data->get(0);
+                $data = DB::select(
+                    'EXECUTE Login_User ?, ?',
+                    [$o->_UserName, md5(sha1($o->_Password))]
+                );
+                // if ($data->count() > 0) {
+                //     $objEmp = $data->get(0);
 
                     $key = "thanhnhi";
 
-                    \Session::put('account', $objEmp);
-                    $jwt = JWT::encode($objEmp,$key);
+                    // \Session::put('account', $objEmp);
+                    $jwt = JWT::encode($data,$key);
 
                     return \response()->json(array('code' => 'ok', 'value' => $jwt));
-                } else {
-                    return \response()->json(array('code' => 'alert', 'value' => 'Tài khoản không tồn tại'));
-                }
+                // } else {
+                //     return \response()->json(array('code' => 'alert', 'value' => 'Tài khoản không tồn tại'));
+                // }
             } else {
                 return \response()->json(array('code' => 'alert', 'value' => 'Tài khoản hoặc mặt khẩu không chính xác !'));
             }

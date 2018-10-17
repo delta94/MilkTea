@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {Link, Route} from 'react-router-dom';
+import {connect} from 'react-redux';
+import * as actions from './../../actions/info.action';
 import './Header.css';
 
 const menus = [
@@ -92,5 +94,17 @@ class Header extends Component {
   }
 
 }
+const mapStateToProps = (state) =>{
+  return {
+    user : state.user
+  }
+}
+const mapDispatchToProps = (dispatch, props) =>{
+  return{
+    login : (id) =>{
+      dispatch(actions.actLoginRequest(id));
+    }
+  }
+}
 
-export default Header;
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

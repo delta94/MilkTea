@@ -11,7 +11,8 @@ class Login extends Component {
         }
     }
 
-    login = () => {
+    log_in = () => {
+        //console.log(this.state.user, this.state.pass)
         this.props.login(this.state.user, this.state.pass)
     }
     onChangeUser = (event) =>{
@@ -34,7 +35,6 @@ class Login extends Component {
         <div className="login">
             <div className="login_content">
                 <h1 className="txt_login text-center mb-5">Đăng Nhập</h1>
-                <form name="#" value="#" method="POST">
                     <div className="group_login">
                         <label className="text_login">Email/Số thẻ<span>(*)</span></label>
                         <input className="input_login" type="text" onChange={this.onChangeUser} placeholder="Nhập Email/Số thẻ"/>
@@ -45,8 +45,7 @@ class Login extends Component {
                     </div>
                     <br />
                     <p>Quên mật khẩu? bấm <a href="">Vào đây</a></p>
-                    <button className="btn btn_login btn-primary" onClick={this.login}>ĐĂNG NHẬP</button>
-                </form>
+                    <button className="btn btn_login btn-primary" onMouseDown={this.log_in}>ĐĂNG NHẬP</button>
             </div>
         </div>
     </div>

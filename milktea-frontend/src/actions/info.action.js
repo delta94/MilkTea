@@ -10,7 +10,8 @@ export const login = (token) =>{
 export const actLoginRequest = (user, password) =>{
     return (dispatch) => {
       return CallApi('Log_In', 'POST', {_UserName : user, _Password: password}).then(res =>{
-         dispatch(login(res.data));
+        console.log(res)
+         //dispatch(login(res.data));
       });
     }
   }

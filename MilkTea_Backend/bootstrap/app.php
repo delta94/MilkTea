@@ -10,7 +10,9 @@
 | the IoC container for the system binding all of the various parts.
 |
 */
-
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: *');
+header('Access-Control-Allow-Headers: *');
 $app = new Illuminate\Foundation\Application(
     realpath(__DIR__.'/../')
 );
@@ -25,7 +27,6 @@ $app = new Illuminate\Foundation\Application(
 | incoming requests to this application from both the web and CLI.
 |
 */
-
 $app->singleton(
     Illuminate\Contracts\Http\Kernel::class,
     App\Http\Kernel::class

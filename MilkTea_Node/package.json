@@ -1,0 +1,29 @@
+{
+  "name": "milktea_back",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maivinhthanh/MilkTea.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maivinhthanh/MilkTea/issues"
+  },
+  "homepage": "https://github.com/maivinhthanh/MilkTea#readme",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mssql": "^4.2.2"
+  },
+  "devDependencies": {
+    "cors": "^2.8.4",
+    "nodemon": "^1.18.4"
+  }
+}

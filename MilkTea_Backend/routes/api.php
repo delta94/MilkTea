@@ -44,4 +44,11 @@ Route::post('Insert_Employee', 'EmployeeController@Insert_Employee');
 Route::post('Edit_Employee_By_ID', 'EmployeeController@Edit_Employee_By_ID');
 Route::get('Select_Employee_By_ID/{ID}', 'EmployeeController@Select_Employee_By_ID');
 
-Route::post('Log_In', 'UsersController@Login');
+Route::group(['middleware' => 'cors'], function() {
+    Route::post('/api/your_url', function () {
+        return ['status'=>'success'];
+     });
+ });
+Route::group(['middleware' => 'Cors'], function() {
+    Route::post('Log_In', 'UsersController@Login');
+});

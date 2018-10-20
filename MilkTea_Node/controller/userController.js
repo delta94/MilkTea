@@ -2,21 +2,22 @@ const sql = require('mssql')
 const config = require('../connect')
 
 exports.Login = function(req, res, next){
-    sql.connect(config).then(() => {
-        return sql.query`
-        DECLARE @RC int
-        DECLARE @_UserName nvarchar(50)
-        DECLARE @_Password nvarchar(50)
-        
-        EXECUTE @RC = [dbo].[Login_User] 
-           @_UserName = 'mvthanh001'
-          ,@_Password = 'd93a5def7511da3d0f2d171d9c344e91'
-        
-        `
-    }).then(result => {
-        res.send(result.recordset[0])
-        //console.dir(result)
-    }).catch(err => {
-        console.log(err)
-    })
+    new sql.ConnectionPool(config).connect().then(pool => {
+          return pool.request().query(`DECLARE @RC int 
+          DECLARE @_User nvarchar(30)
+          DECLARE @_Pass nvarchar(15)
+          EXECUTE @RC = [dbo].[Login] 
+          @_User = ${req.body._UserName}
+          ,@_Pass = ${req.body._Password}
+          `)
+        }).then(result => {
+          let rows = result.recordset
+          res.setHeader('Access-Control-Allow-Origin', '*')
+          res.status(200).json(rows);
+          sql.close();
+        }).catch(err => {
+          res.status(500).send({ message: "${err}"})
+          sql.close();
+        });
+    
 }

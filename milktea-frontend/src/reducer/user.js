@@ -14,14 +14,17 @@ var findIndex = (tasks, id) =>{
     return result;
 }
 
-const award = (state = initialState, action) => {
+const user = (state = initialState, action) => {
     switch (action.type){
         case Types.LOGIN:
             state = action.token;
+            return [...state];
+        case Types.LOGIN_ERR:
+            state = action.message;
             return [...state];
         default: 
             return [...state];
     }
 }
 
-export default award;
+export default user;

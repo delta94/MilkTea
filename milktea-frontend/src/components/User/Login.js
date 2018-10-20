@@ -12,8 +12,9 @@ class Login extends Component {
     }
 
     log_in = () => {
-        //console.log(this.state.user, this.state.pass)
+        console.log(this.state.user, this.state.pass)
         this.props.login(this.state.user, this.state.pass)
+        this.props.history.push('/')
     }
     onChangeUser = (event) =>{
         var target = event.target;

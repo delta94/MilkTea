@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import * as actions from './../../actions/info.action';
 
 class Login extends Component {
@@ -7,14 +8,28 @@ class Login extends Component {
         super(props);
         this.state = {
             user: '',
-            pass: ''
+            pass: '',
+            isWrong: false,
+            redirect : false
         }
     }
-
+    componentWillReceiveProps(nextProps){
+        if(nextProps.user.code === 'err'){
+            this.setState({
+                isWrong : true
+            })
+        }
+        else{
+            this.setState({
+                isWrong : false,
+                redirect : true
+            })
+        }
+        //console.log(nextProps.user)
+    }
     log_in = () => {
-        console.log(this.state.user, this.state.pass)
+        //console.log(this.state.user, this.state.pass)
         this.props.login(this.state.user, this.state.pass)
-        this.props.history.push('/')
     }
     onChangeUser = (event) =>{
         var target = event.target;
@@ -29,6 +44,20 @@ class Login extends Component {
         this.setState({
           pass : value
         });
+    }
+    showWrongPass = () =>{
+        if(this.state.isWrong === true){
+            return(
+                <div>
+                    <p className="Danger">Mật Khẩu hoặc tên đăng nhập sai</p>
+                </div>
+            )
+        }
+    }
+    haveRedirect = () =>{
+        if(this.state.redirect === true){
+            return <Redirect to="/" />
+        }
     }
   render() {
     return (
@@ -45,8 +74,10 @@ class Login extends Component {
                         <input className="input_login" type="password" onChange={this.onChangePass} placeholder="Nhập mật khẩu"/>
                     </div>
                     <br />
-                    <p>Quên mật khẩu? bấm <a href="">Vào đây</a></p>
-                    <button className="btn btn_login btn-primary" onMouseDown={this.log_in}>ĐĂNG NHẬP</button>
+                    {this.showWrongPass()}
+                    {/* <p>Quên mật khẩu? bấm <a href="">Vào đây</a></p> */}
+                    <button className="btn btn_login btn-primary" onClick={this.log_in}>ĐĂNG NHẬP</button>
+                    {this.haveRedirect()}
             </div>
         </div>
     </div>

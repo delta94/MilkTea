@@ -37,7 +37,7 @@ class MenuHome extends Component {
                   <div className="button input-group mb-3">
                     <input type="text" className="form-control" placeholder="Tên thức uống..." />
                     <div className="search input-group-append">
-                      <button name className="btn bg-success">Search</button>
+                      <button className="btn bg-success">Search</button>
                     </div>
                   </div>
                 </div>
@@ -50,7 +50,7 @@ class MenuHome extends Component {
                   <div className="button input-group mb-3">
                     <input type="text" className="form-control" placeholder="Tên thức uống..." />
                     <div className="search input-group-append">
-                      <button name className="btn bg-success">Tìm kiếm</button>
+                      <button className="btn bg-success">Tìm kiếm</button>
                     </div>
                   </div>
                 </div>
@@ -82,7 +82,7 @@ class MenuHome extends Component {
               </div>
             </div>
             <div className="button">
-              <button name className="btn btn-success">ReadMore</button>
+              <button className="btn btn-success">ReadMore</button>
             </div>
           </div>
         </div>
@@ -96,7 +96,7 @@ class MenuHome extends Component {
               </div>
             </div>
             <div className="button">
-              <button name className="btn btn-success">ReadMore</button>
+              <button className="btn btn-success">ReadMore</button>
             </div>
           </div>
         </div>
@@ -110,7 +110,7 @@ class MenuHome extends Component {
               </div>
             </div>
             <div className="button">
-              <button name className="btn btn-success">ReadMore</button>
+              <button className="btn btn-success">ReadMore</button>
             </div>
           </div>
         </div>
@@ -134,7 +134,7 @@ class MenuHome extends Component {
             phê</h5>
           {/* <iframe width="560" height="315" src="https://www.youtube.com/embed/M0zUukzYVwg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> */}
           <div className="button">
-            <button name className="btn btn-success">ReadMore</button>
+            <button className="btn btn-success">ReadMore</button>
           </div>
         </div>
       </div>

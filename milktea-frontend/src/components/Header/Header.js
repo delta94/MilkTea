@@ -33,7 +33,7 @@ const MenuLink = ({label, to, active}) =>{
       path = {to}
       exact = {active}
       children ={ ({match}) =>{
-        var active = match ? "active" : "";
+        let active = match ? "active" : "";
         return(
           <li className={`text-menu nav-item " + ${active}`}>
             <Link to={to} className="nav-link">
@@ -47,6 +47,50 @@ const MenuLink = ({label, to, active}) =>{
 }
 
 class Header extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+        haveUser: false,
+        user : {}
+    }
+  }
+  componentWillReceiveProps(nextProps){
+    if(nextProps.user.code === 'ok'){
+      this.setState({
+        haveUser : true,
+        user : nextProps.user
+      })
+    }
+  }
+  
+  showUser = () =>{
+    if(this.state.haveUser === true){
+      return (
+        <div>
+          {this.state.user.data.Name}
+          <div className="dropdown">
+            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            </button>
+            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a className="dropdown-item" href="">Đăng xuất</a>
+            </div>
+          </div>
+        </div>
+      )
+    }
+    else{
+      return(
+        <div>
+          <button type="button" className="btn btn-white ml-20" data-toggle="collapse" data-target="#demo">Login
+            in</button>
+          <div id="demo" className="collapse">
+            <Link to="/Login" className="log nav-link">Đăng nhập</Link>
+            <Link to="/SignUp" className="log nav-link">Đăng ký</Link>
+          </div>
+        </div>
+      )
+    }
+  }
   render() {
     return (
       <section className="head">
@@ -60,12 +104,7 @@ class Header extends Component {
               <ul className="txt navbar-nav ml-auto mt-2 mt-lg-0">
                 {this.showMenu(menus)}
                 <li className="text-menu ">
-                  <button type="button" className="btn btn-white ml-20" data-toggle="collapse" data-target="#demo">Login
-                    in</button>
-                  <div id="demo" className="collapse">
-                    <Link to="/Login" className="log nav-link">Đăng nhập</Link>
-                    <Link to="/SignUp" className="log nav-link">Đăng ký</Link>
-                  </div>
+                  {this.showUser()}
                 </li>
               </ul>
             </div>

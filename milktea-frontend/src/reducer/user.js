@@ -1,29 +1,27 @@
 import * as Types from '../constant/ActionType';
 var initialState = []
 
-var id = "";
-var index = "";
-
-var findIndex = (tasks, id) =>{
-    var result = -1;
-    tasks.forEach((task,index)=>{
-        if(task._id === id){
-            result = index;
-        }
-    });
-    return result;
-}
-
 const user = (state = initialState, action) => {
+    let json;
     switch (action.type){
         case Types.LOGIN:
-            state = action.token;
-            return [...state];
+            json = {
+                code : 'ok',
+                data : action.token[0]
+            }
+            state = json;
+            console.log(state)
+            return state;
         case Types.LOGIN_ERR:
-            state = action.message;
-            return [...state];
+            json = {
+                code : 'err',
+                data : action.message
+            }
+            state = json;
+            console.log(state)
+            return state;
         default: 
-            return [...state];
+            return state;
     }
 }
 

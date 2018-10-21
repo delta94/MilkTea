@@ -1,28 +1,53 @@
 import React, { Component } from 'react';
+import * as actions from './../../actions/bills.action';
+import {connect} from 'react-redux';
 
 class Meterial extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+        meterial : {ID: 1, Name: "Sữa đặc ông thọ", Price: 20000, Count: 10},
+        haveData : false
+    }
+  }
+  componentWillMount(){
+    this.props.getAllMeterial();
+  }
+  componentWillReceiveProps(nextProps){
+    if(nextProps.meterial.code === 'ok'){
+      this.setState({
+        meterial: nextProps.meterial.data,
+        haveData: true
+      })
+    }
+  }
+  showMeterial = () =>{
+    let resuilt;
+    console.log(this.state.meterial)
+    if(this.state.haveData === true){
+      resuilt = this.state.meterial.map((item, index) => {
+          return(
+            <div className="material_content" key={index}>
+              <p>Nguyên liệu: {item.Name}</p>
+              <p>Số lượng: {item.Count}</p>
+            </div>
+          )
+        })
+    }
+    else{
+      resuilt = <div>Không có dữ liệu</div>
+    }
+    return resuilt
+  }
   render() {
     return (
       <div className="SubHeader">
         <div className="material">
   <div className="group_material container">
     <div className="group">
-      <div className="material_content">
-        <p>Nguyên liệu: Trân châu đen</p>
-        <p>Số lượng: 30</p>
-      </div>
-      <div className="material_content">
-        <p>Nguyên liệu: Thạch củ năng</p>
-        <p>Số lượng: 40</p>
-      </div>
-      <div className="material_content">
-        <p>Nguyên liệu: Trân châu trắng</p>
-        <p>Số lượng: 10</p>
-      </div>
-      <div className="material_content">
-        <p>Nguyên liệu: Thạch bảy màu</p>
-        <p>Số lượng: 50</p>
-      </div>
+    {
+        this.showMeterial()
+    }
     </div>
   </div>
   <div className="detail_material mt-5">
@@ -86,5 +111,16 @@ class Meterial extends Component {
     );
   }
 }
-
-export default Meterial;
+const mapStateToProps = (state) =>{
+  return {
+    meterial : state.meterial
+  }
+}
+const mapDispatchToProps = (dispatch, props) =>{
+  return{
+    getAllMeterial : () =>{
+      dispatch(actions.actGetAllMeterial());
+    }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Meterial);

@@ -10,6 +10,9 @@ const meterial = (state = initialState, action) => {
                 data : action.data
             }
             state = json;
+            return state;
+        case Types.ADD_METERIAL:
+            state = [...state,action.data];
             console.log(state)
             return state;
         case Types.SELECT_METERIAL_ERR:
@@ -18,7 +21,6 @@ const meterial = (state = initialState, action) => {
                 data : action.message
             }
             state = json;
-            console.log(state)
             return state;
         default: 
             return state;

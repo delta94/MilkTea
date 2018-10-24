@@ -460,9 +460,9 @@
   /*# sourceMappingURL=style.css.map */
   .material {
     margin-top: 30px; }
-    .material .group_material .group {
-      display: flex; }
+    .material .group_material .group { }
       .material .group_material .group .material_content {
+        width: 255px;
         border: 1px solid black;
         margin-right: 30px;
         padding: 10px;

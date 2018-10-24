@@ -72,7 +72,7 @@ class Header extends Component {
             <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             </button>
             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a className="dropdown-item" href="">Đăng xuất</a>
+              <a className="dropdown-item"  href="">Đăng xuất</a>
             </div>
           </div>
         </div>

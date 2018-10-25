@@ -19,16 +19,25 @@ export const addMaterial = (data) =>{
     data
   }
 }
+export const deleteMaterial = (data) =>{
+  return {
+    type: Types.DELETE_METERIAL,
+    data
+  }
+}
+export const updateMaterial = (data) =>{
+  return {
+    type: Types.UPDATE_METERIAL,
+    data
+  }
+}
 export const actGetAllMeterial = () =>{
     return (dispatch) => {
       return CallApi('Select_All_Meterial', 'GET').then(res =>{
-        console.log(res)
         if(res.data.length <= 0){
-          console.log('ko dữ liệu')
           dispatch(getAllMeterialErr(res.data));
         }
         else{
-          console.log('có dữ liệu')
           dispatch(getAllMeterial(res.data));
         }
       });
@@ -41,14 +50,42 @@ export const actInsertMeterial = (name,price,count) =>{
       "_Price": price,
       "_Count": count
     }).then(res =>{
-      console.log(res)
       if(res.data.length <= 0){
-        console.log('ko dữ liệu')
         dispatch(getAllMeterialErr(res.data));
       }
       else{
-        console.log('có dữ liệu')
         dispatch(addMaterial(res.data));
+      }
+    });
+  }
+}
+export const actDeleteMeterial = (id) =>{
+  return (dispatch) => {
+    return CallApi('Delete_Meterial', 'POST',{
+      "_ID": id
+    }).then(res =>{
+      if(res.data.length <= 0){
+        dispatch(getAllMeterialErr(res.data));
+      }
+      else{
+        dispatch(deleteMaterial(res.data));
+      }
+    });
+  }
+}
+export const actUpdateMeterial = (id,name,price,count) =>{
+  return (dispatch) => {
+    return CallApi('Update_Meterial', 'POST',{
+      "_ID": id,
+      "_Name": name,
+      "_Price": price,
+      "_Count": count
+    }).then(res =>{
+      if(res.data.length <= 0){
+        dispatch(getAllMeterialErr(res.data));
+      }
+      else{
+        dispatch(updateMaterial(res.data));
       }
     });
   }

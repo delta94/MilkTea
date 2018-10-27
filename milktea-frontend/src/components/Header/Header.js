@@ -35,7 +35,7 @@ const MenuLink = ({label, to, active}) =>{
       children ={ ({match}) =>{
         let active = match ? "active" : "";
         return(
-          <li className={`text-menu nav-item " + ${active}`}>
+          <li className={`text-menu nav-item `}>
             <Link to={to} className="nav-link">
               {label}
             </Link>
@@ -81,12 +81,16 @@ class Header extends Component {
     else{
       return(
         <div>
-          <button type="button" className="btn btn-white ml-20" data-toggle="collapse" data-target="#demo">Login
+          <button type="button" className="btn btn-white ml-20" id="Danhnhap" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login
             in</button>
-          <div id="demo" className="collapse">
+          <div className="dropdown-menu login" aria-labelledby="Danhnhap" >
+            <Link to="/Login" className="nav-link">Đăng nhập</Link>
+            <Link to="/SignUp" className="nav-link">Đăng ký</Link>
+          </div>
+          {/* <div id="demo" className="collapse">
             <Link to="/Login" className="log nav-link">Đăng nhập</Link>
             <Link to="/SignUp" className="log nav-link">Đăng ký</Link>
-          </div>
+          </div> */}
         </div>
       )
     }

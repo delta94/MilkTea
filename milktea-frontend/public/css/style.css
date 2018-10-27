@@ -456,7 +456,9 @@
       font-style: italic;
       color: red;
       text-decoration: none; }
-  
+      .head .menu {
+        height: 85px;
+      }
   /*# sourceMappingURL=style.css.map */
   .material {
     margin-top: 30px; }
@@ -529,4 +531,9 @@
         /*# sourceMappingURL=style.css.map */
 .SubHeader{
   margin-top:125px ;
+}
+.navbar-expand-md .navbar-nav .dropdown-menu {
+  position: absolute;
+  left: 1105px;
+  top: 70px;
 }

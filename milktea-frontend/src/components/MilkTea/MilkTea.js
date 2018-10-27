@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import * as actions from './../../actions/milktea.actions';
 
 class Menu extends Component {
 constructor(props){
@@ -46,17 +48,39 @@ showCount = () =>{
             )
     }
 }
+getIDDelete = () =>{
+    this.props.getIDDelete(this.props.info.ID)
+}
+showEdit = () =>{
+    console.log(this.props.user)
+    if(this.props.user.code === undefined){
+        return <div></div>
+    }
+    else{
+        return (
+            <div className="row">
+                <div className="col-md-6">
+                    <button className="btn btn-warning">sửa</button>
+                </div>
+                <div className="col-md-6">
+                    <button className="btn btn-danger" data-toggle="modal" onClick={() =>this.getIDDelete()} data-target="#deleteMilktea">xóa</button>
+                </div>
+            </div>
+        )
+    }
+}
 
   render() {
     return (
       <div className="milk-tea">
         <div className="milktea text-center">
         <div className="card-milktea">
-            <img className="card_img card-img-top" src="./img/m6.jpg" alt="Card image cap" />
+            <img className="card_img card-img-top" src={this.props.info.Picture} alt="Card image cap" />
             <div className="card_img card-body">
-                <h5 className="card-title">Trà sữa đường đen</h5>
-                <p className="card-text">Giá: 20 000vnd</p>
+                <h5 className="card-title">{this.props.info.Name}</h5>
+                <p className="card-text">Giá: {this.props.info.Price}</p>
                 {this.showCount()}
+                {this.showEdit()}
             </div>
         </div>
         </div>
@@ -65,5 +89,21 @@ showCount = () =>{
     );
   }
 }
+const mapStateToProps = (state) =>{
+    return {
+      user : state.user,
+      milktea : state.milktea
+    }
+  }
+  const mapDispatchToProps = (dispatch, props) =>{
+    return{
+        insertMilkTea : (name,price,picture)=>{
+            dispatch(actions.actInsertMilkTea(name,price,picture));
+        },
+        updateMilkTea : (id,name,price,picture)=>{
+            dispatch(actions.actUpdateMilkTea(id,name,price,picture));
+        }
+    }
+  }
 
-export default Menu;
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);

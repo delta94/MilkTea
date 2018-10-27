@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 var findIndex = (tasks, id) =>{
   var result = -1;
   tasks.forEach((task,index)=>{
-    console.log(task, id)
       if(task.ID.toString() === id){
           result = index;
       }
@@ -68,7 +67,6 @@ onSelect = (event)=>{
         haveData: true
       })
     }
-    this.showMeterial()
   }
   Add_Material = () =>{
     this.props.Add_Material(this.state.Name, parseInt(this.state.Price), this.state.Count)
@@ -82,6 +80,7 @@ onSelect = (event)=>{
     this.props.Delete_Material(this.state.idDelete)
   }
   Update_Material = () =>{
+    if(this.state.Name === '' && this.state.Price === '' && this.state.Count === '')
     this.props.Update_Material(this.state.idselect,this.state.Name, parseInt(this.state.Price), this.state.Count)
   }
   showMeterial = () =>{
@@ -178,7 +177,7 @@ onSelect = (event)=>{
         </div>
       </div>
       <div className="form_add modal" id="delete">
-          <div className="add_iteam modal-dialog">
+          <div className=" modal-dialog">
             <div className="form_add_material modal-content">
               <h3>Bạn có chắc muốn xóa nguyên liệu này</h3>
               <div className="modal-footer">

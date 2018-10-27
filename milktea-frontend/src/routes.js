@@ -16,14 +16,14 @@ const routes = [
   },
   {
     path: "/MilkTea",
-    exact: true,
+    exact: false,
     main: () => <MenuMilkTea />
   },
-  {
-    path: "/Order",
-    exact: true,
-    main: () => <Order />
-  },
+  // {
+  //   path: "/Order",
+  //   exact: true,
+  //   main: () => <Order />
+  // },
   {
     path: "/SignUp",
     exact: true,

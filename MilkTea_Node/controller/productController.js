@@ -89,10 +89,7 @@ exports.Update_Meterial = function(req, res, next){
     DECLARE @_ID int
     DECLARE @_Name nvarchar(50)
     DECLARE @_Price int
-    DECLARE @_Count int
-    
-    -- TODO: Set parameter values here.
-    
+    DECLARE @_Count int    
     EXECUTE @RC = [dbo].[Update_Material] 
        @_ID = ${req.body._ID}
       ,@_Name = '${req.body._Name}'

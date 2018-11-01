@@ -1,7 +1,7 @@
 import React from "react";
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
-import MenuMilkTea from './pages/MenuMilkTea';
+import Menu from './pages/Menu';
 import Order from './pages/OrderMilkTea';
 import SignUp from './components/User/SignUp';
 import Login from './components/User/Login';
@@ -17,7 +17,7 @@ const routes = [
   {
     path: "/MilkTea",
     exact: false,
-    main: () => <MenuMilkTea />
+    main: () => <Menu />
   },
   // {
   //   path: "/Order",
@@ -26,22 +26,22 @@ const routes = [
   // },
   {
     path: "/SignUp",
-    exact: true,
+    exact: false,
     main: () => <SignUp />
   },
   {
     path: "/Login",
-    exact: true,
+    exact: false,
     main: () => <Login />
   },
   {
     path: "/Bills",
-    exact: true,
+    exact: false,
     main: () => <Bills />
   },
   {
     path: "/Manager",
-    exact: true,
+    exact: false,
     main: () => <Meterial />
   },
   {

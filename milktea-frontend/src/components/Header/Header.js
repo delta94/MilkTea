@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import * as actions from './../../actions/info.action';
 import './Header.css';
 
-const menus = [
+let menus = [
   {
     name : "Trang chủ",
     to : "/",
@@ -54,6 +54,16 @@ class Header extends Component {
         user : {}
     }
   }
+  addforManager = () =>{
+    if(this.props.user.code !== undefined){
+      menus = [...menus, {
+        name : "Quản lý",
+        to : "/Manager",
+        exact : false
+      }]
+      console.log(menus)
+  }
+  }
   componentWillReceiveProps(nextProps){
     if(nextProps.user.code === 'ok'){
       this.setState({
@@ -61,17 +71,19 @@ class Header extends Component {
         user : nextProps.user
       })
     }
+    
   }
   
   showUser = () =>{
     if(this.state.haveUser === true){
+      this.addforManager()
       return (
         <div>
           {this.state.user.data.Name}
           <div className="dropdown">
             <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             </button>
-            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div className="dropdown-menu login" aria-labelledby="dropdownMenuButton">
               <a className="dropdown-item"  href="">Đăng xuất</a>
             </div>
           </div>
@@ -87,10 +99,6 @@ class Header extends Component {
             <Link to="/Login" className="nav-link">Đăng nhập</Link>
             <Link to="/SignUp" className="nav-link">Đăng ký</Link>
           </div>
-          {/* <div id="demo" className="collapse">
-            <Link to="/Login" className="log nav-link">Đăng nhập</Link>
-            <Link to="/SignUp" className="log nav-link">Đăng ký</Link>
-          </div> */}
         </div>
       )
     }

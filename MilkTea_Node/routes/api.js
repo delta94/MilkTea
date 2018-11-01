@@ -1,5 +1,17 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: function(req, file, cb){
+        cb(null, 'uploads/')
+    },
+    filename: function(req, file, cb){
+        cb(null, new Date().setUTCMilliseconds() + file.originalname)
+    }
+})
+
+const upload = multer({ storage: storage})
 
 const user = require('../controller/userController');
 const product = require('../controller/productController');
@@ -14,7 +26,7 @@ router.post('/Delete_Meterial', product.Delete_Meterial);
 router.post('/Update_Meterial', product.Update_Meterial);
 
 router.get('/Select_All_MilkTea', milktea.Select_All_MilkTea);
-router.post('/Insert_MilkTea', milktea.Insert_MilkTea);
+router.post('/Insert_MilkTea', upload.single('recfile'), milktea.Insert_MilkTea);
 router.post('/Delete_MilkTea', milktea.Delete_MilkTea);
 router.post('/Update_MilkTea', milktea.Update_MilkTea);
 

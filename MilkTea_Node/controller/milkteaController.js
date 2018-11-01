@@ -18,6 +18,7 @@ exports.Select_All_MilkTea = function(req, res, next){
     
 }
 exports.Insert_MilkTea = function(req, res, next){
+  console.log(req)
   new sql.ConnectionPool(config).connect().then(pool => {
     return pool.request().query(`DECLARE @RC int
     DECLARE @_Name nvarchar(50)
@@ -26,7 +27,7 @@ exports.Insert_MilkTea = function(req, res, next){
     EXECUTE @RC = [dbo].[Insert_MilkTea] 
        @_Name = '${req.body._Name}'
       ,@_Price = ${req.body._Price}
-      ,@_Picture = ${req.body._Picture}
+      ,@_Picture = ${req.body.recfile}
     `)
   }).then(result => {
     let rows = result.recordset

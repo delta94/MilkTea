@@ -49,10 +49,9 @@ showCount = () =>{
     }
 }
 getIDDelete = () =>{
-    this.props.getIDDelete(this.props.info.ID)
+    this.props.getIDDelete(this.props.info)
 }
 showEdit = () =>{
-    console.log(this.props.user)
     if(this.props.user.code === undefined){
         return <div></div>
     }

@@ -537,3 +537,14 @@
   left: 1105px;
   top: 70px;
 }
+i.fa.fa-plus.add-milktea {
+  font-size: 50px;
+  border-radius: 50%;
+  background-color: #30b0ea;
+  position: absolute;
+  left: 25px;
+  top: 105px;
+}
+.add-milktea {
+  position: relative;
+}

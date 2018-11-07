@@ -7,7 +7,8 @@ constructor(props){
     super(props);
     this.state = {
         isSelect : false,
-        count: 1
+        count: 1,
+        idmilktea: ''
     }
 }
 
@@ -29,14 +30,21 @@ down = () =>{
         })
     }
 }
-showCount = () =>{
+buy = (id,price)=>{
+    this.props.selectMilkTea({
+        ID: id,
+        count: this.state.count,
+        price: price
+    })
+}
+showCount = (id,price) =>{
     if(this.state.isSelect === true){
         return (
         <div className="icon_card btn-group" role="group" aria-label="Basic example">
             <button type="button" className="btn btn-primary"><i className="fas fa-minus" onClick={() => this.down()} /></button>
             <button type="button" className="btn btn-primary">{this.state.count}</button>
             <button type="button" className="btn btn-primary"><i className="fas fa-plus" onClick={() => this.up()} /></button>
-            <button type="button" className="btn btn-danger" onClick={() => this.selectMilkTea(false)} >Hủy</button>
+            <button type="button" className="btn btn-danger" onClick={() => this.buy(id,price)} >OK</button>
         </div>
 
         )
@@ -78,7 +86,7 @@ showEdit = () =>{
             <div className="card_img card-body">
                 <h5 className="card-title">{this.props.info.Name}</h5>
                 <p className="card-text">Giá: {this.props.info.Price}</p>
-                {this.showCount()}
+                {this.showCount(this.props.info.ID, this.props.info.Price)}
                 {this.showEdit()}
             </div>
         </div>

@@ -4,14 +4,19 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb){
-        cb(null, 'uploads/')
+        cb(null, 'uploads')
     },
     filename: function(req, file, cb){
         cb(null, new Date().setUTCMilliseconds() + file.originalname)
     }
 })
 
-const upload = multer({ storage: storage})
+const upload = multer({ 
+    storage: storage,
+    limits:{
+        fieldSize: 1024 * 1024 * 5 
+    }
+})
 
 const user = require('../controller/userController');
 const product = require('../controller/productController');
@@ -19,6 +24,7 @@ const milktea = require('../controller/milkteaController');
 
 
 router.post('/login', user.Login);
+router.post('/loginA', user.LoginA);
 router.get('/Select_All_Product', product.Select_All_Product);
 router.get('/Select_All_Meterial', product.Select_All_Meterial);
 router.post('/Insert_Meterial', product.Insert_Meterial);

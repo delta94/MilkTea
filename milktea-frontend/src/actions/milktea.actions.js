@@ -44,12 +44,18 @@ export const actGetAllMilkTea = () =>{
     }
 }
 export const actInsertMilkTea = (name,price,picture) =>{
+  console.log(picture)
   return (dispatch) => {
     return CallApi('Insert_MilkTea', 'POST',{
       "_Name": name,
       "_Price": price,
-      "_Picture": picture
-    }).then(res =>{
+      "recfile": picture
+    },
+    {
+      headers: {
+          'content-type': 'multipart/form-data'
+      }
+  }).then(res =>{
       if(res.data.length <= 0){
         dispatch(getAllMilkTeaErr(res.data));
       }

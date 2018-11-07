@@ -1,11 +1,11 @@
 const config = {
     user: 'sa',
     password: '123456',
-    server: 'localhost', // You can use 'localhost\\instance' to connect to named instance
+    server: 'localhost', 
     database: 'MilkTea',
  
     options: {
-        encrypt: true // Use this if you're on Windows Azure
+        encrypt: true
     }
 }
 module.exports = config

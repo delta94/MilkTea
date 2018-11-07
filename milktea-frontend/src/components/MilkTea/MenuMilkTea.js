@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MilkTea from './MilkTea';
 import * as actions from './../../actions/milktea.actions';
+import * as actionbill from './../../actions/bills.action';
 import {connect} from 'react-redux';
 
 var findIndex = (tasks, id) =>{
@@ -125,6 +126,9 @@ class MenuMilkTea extends Component {
   insertMilkTea = () =>{
     this.props.insertMilkTea(this.state.name,this.state.price,this.state.picture)
   }
+  order = ()=>{
+    this.props.insertBill(this.state.totalprice, this.state.date, this.state.address,this.state.phone)
+  }
   render() {
     return (
     <div className="list-milk-tea">
@@ -201,7 +205,7 @@ class MenuMilkTea extends Component {
             <label >Nhập số điện thoại</label>
             <input className="form-control" onChange={this.onChangePhone} />
           </div>
-          <button type="submit" className="btn btn-primary">Đặt hàng</button>
+          <button className="btn btn-primary" onClick={() => this.order()}>Đặt hàng</button>
       </div>
     </div>
     );
@@ -226,7 +230,10 @@ const mapDispatchToProps = (dispatch, props) =>{
       },
       deleteMilkTea : (id)=>{
           dispatch(actions.actDeleteMilkTea(id));
-      }
+      },
+      insertBill : (total,date,address,phone)=>{
+        dispatch(actionbill.actInsertBill(total,date,address,phone));
+    },
   }
 }
 

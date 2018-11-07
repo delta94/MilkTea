@@ -12,3 +12,5 @@ export const SELECT_MILKTEA_ERR = "SELECT_MILKTEA_ERR";
 export const ADD_MILKTEA = "ADD_MILKTEA";
 export const DELETE_MILKTEA = "DELETE_MILKTEA";
 export const UPDATE_MILKTEA = "UPDATE_MILKTEA";
+
+export const ADD_BILL = "ADD_BILL";

@@ -31,6 +31,12 @@ export const updateMaterial = (data) =>{
     data
   }
 }
+export const getAllBill = (data) =>{
+  return {
+    type: Types.ADD_BILL,
+    data
+  }
+}
 export const actGetAllMeterial = () =>{
     return (dispatch) => {
       return CallApi('Select_All_Meterial', 'GET').then(res =>{
@@ -86,6 +92,24 @@ export const actUpdateMeterial = (id,name,price,count) =>{
       }
       else{
         dispatch(updateMaterial(res.data));
+      }
+    });
+  }
+}
+export const actInsertBill = (total,date,address,phone) =>{
+  return (dispatch) => {
+    return CallApi('Insert_Bill', 'POST',{
+      "_PriceTotal": total,
+      "_Date": date,
+      "_IDcustomer": null,
+      "_Address": address,
+      "_Phone": phone,
+    }).then(res =>{
+      if(res.data.length <= 0){
+        dispatch(getAllMeterialErr(res.data));
+      }
+      else{
+        dispatch(getAllBill(res.data));
       }
     });
   }

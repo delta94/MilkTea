@@ -15,12 +15,13 @@ export const loginErr = (message) =>{
 }
 export const actLoginRequest = (user, password) =>{
     return (dispatch) => {
-      return CallApi('login', 'POST', {_UserName : user, _Password: password}).then(res =>{
+      return CallApi('loginA', 'POST', {_UserName : user, _Password: password}).then(res =>{
         if(res.data.length <= 0){
           dispatch(loginErr(res.data));
         }
         else{
           dispatch(login(res.data));
+          console.log(res.data)
         }
       });
     }

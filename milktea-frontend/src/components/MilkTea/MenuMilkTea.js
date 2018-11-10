@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MilkTea from './MilkTea';
+import Prepare from './PrepareMilkTea';
 import * as actions from './../../actions/milktea.actions';
 import * as actionbill from './../../actions/bills.action';
 import {connect} from 'react-redux';
@@ -20,6 +21,7 @@ class MenuMilkTea extends Component {
     this.state = {
       milktea:{},
       haveData:false,
+      milkteaselect: {ID:null, Name: null, Picture: null},
       milkteaDelete: {ID:null, Name: null, Picture: null},
       name: '',
       price: '',
@@ -28,7 +30,8 @@ class MenuMilkTea extends Component {
       totalprice:0,
       date: null,
       address: null,
-      phone:null
+      phone:null,
+      isBuy: false
     }
   }
   componentWillMount(){
@@ -108,7 +111,8 @@ class MenuMilkTea extends Component {
     if(this.state.haveData === true){
       resuilt = this.state.milktea.map((item, index) => {
           return(
-            <MilkTea info={item} getIDDelete={this.getIDDelete} key={index} selectMilkTea={this.selectMilkTea}/>
+            <MilkTea info={item} getIDDelete={this.getIDDelete} getID={this.getID}
+             key={index} selectMilkTea={this.selectMilkTea}/>
           )
         })
     }
@@ -117,6 +121,10 @@ class MenuMilkTea extends Component {
     }
     return resuilt
   }
+  getID = (value)=>{
+    this.setState({milkteaselect: value});
+  }
+  
   getIDDelete = (value) =>{
     this.setState({milkteaDelete: value});
   }
@@ -128,6 +136,38 @@ class MenuMilkTea extends Component {
   }
   order = ()=>{
     this.props.insertBill(this.state.totalprice, this.state.date, this.state.address,this.state.phone, this.state.listmilktea)
+    this.setState({
+      isBuy: true
+    })
+  }
+  showBuy =()=>{
+    if(this.state.isBuy === false){
+      return(
+        <div className="Order container">
+          <div>
+              <h5>Tổng tiền hóa đơn của bạn là: {this.state.totalprice}</h5>
+          </div>
+          <div className="form-group">
+            <label >Nhập địa chỉ giao hàng</label>
+            <input className="form-control" onChange={this.onChangeAddress} />
+          </div>
+          <div className="form-group">
+            <label >Nhập số điện thoại</label>
+            <input className="form-control" onChange={this.onChangePhone} />
+          </div>
+          <button className="btn btn-primary" onClick={() => this.order()}>Đặt hàng</button>
+      </div>
+      )
+    }
+    else{
+      return(
+        <div className="Order container">
+          <div class="alert alert-primary" role="alert">
+            Cám ơn bạn đã đặt hàng tại cửa hàng chúng tôi. Hóa đơn của bạn sẽ được chuyển đến sớm nhất.
+          </div>
+        </div>
+      )
+    }
   }
   render() {
     return (
@@ -190,23 +230,25 @@ class MenuMilkTea extends Component {
             </div>
           </div>
         </div>
+        <div className="modal fade" id="prepare" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">Nguyên liệu cho trà sữa</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <Prepare milktea={this.state.milkteaselect}/>
+              </div>
+            </div>
+          </div>
+        </div>
         <br />
         
       </div>
-      <div className="Order container">
-          <div>
-              <h5>Tổng tiền hóa đơn của bạn là: {this.state.totalprice}</h5>
-          </div>
-          <div className="form-group">
-            <label >Nhập địa chỉ giao hàng</label>
-            <input className="form-control" onChange={this.onChangeAddress} />
-          </div>
-          <div className="form-group">
-            <label >Nhập số điện thoại</label>
-            <input className="form-control" onChange={this.onChangePhone} />
-          </div>
-          <button className="btn btn-primary" onClick={() => this.order()}>Đặt hàng</button>
-      </div>
+        {this.showBuy()}
     </div>
     );
   }
@@ -233,7 +275,7 @@ const mapDispatchToProps = (dispatch, props) =>{
       },
       insertBill : (total,date,address,phone,listmilktea)=>{
         dispatch(actionbill.actInsertBill(total,date,address,phone,listmilktea));
-    },
+      }
   }
 }
 

@@ -6,7 +6,8 @@ import Order from './pages/OrderMilkTea';
 import SignUp from './components/User/SignUp';
 import Login from './components/User/Login';
 import Meterial from './components/Bills/Meterial';
-import Bills from './components/Bills/Bills'
+import Bills from './components/Bills/Bills';
+import Prepare from './components/MilkTea/PrepareMilkTea'
 
 const routes = [
   {
@@ -38,6 +39,11 @@ const routes = [
     path: "/Bills",
     exact: false,
     main: () => <Bills />
+  },
+  {
+    path: "/PrepareMilktea",
+    exact: false,
+    main: () => <Prepare />
   },
   {
     path: "/Manager",

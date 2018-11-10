@@ -17,6 +17,21 @@ exports.Select_All_MilkTea = function(req, res, next){
     });
     
 }
+exports.Select_Material_Of_MilkTea = function(req, res, next){
+  new sql.ConnectionPool(config).connect().then(pool => {
+    return pool.request().query(`select * from LayNguyenLieu(${req.body._ID})
+    `)
+  }).then(result => {
+    let rows = result.recordset
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.status(200).json(rows);
+    sql.close();
+  }).catch(err => {
+    res.status(200).send({ message: "${err}"})
+    sql.close();
+  });
+  
+}
 exports.Insert_MilkTea = function(req, res, next){
   console.log(req.body)
   new sql.ConnectionPool(config).connect().then(pool => {

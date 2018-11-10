@@ -30,6 +30,10 @@ down = () =>{
         })
     }
 }
+getPrepare= (id) =>{
+    this.props.getAllPrepareMilkTea(this.props.info.ID)
+    this.props.getID(this.props.info)
+}
 buy = (id,price)=>{
     this.props.selectMilkTea({
         ID: id,
@@ -66,11 +70,14 @@ showEdit = () =>{
     else{
         return (
             <div className="row">
-                <div className="col-md-6">
+                <div className="col-md-4">
                     <button className="btn btn-warning">sửa</button>
                 </div>
-                <div className="col-md-6">
+                <div className="col-md-4">
                     <button className="btn btn-danger" data-toggle="modal" onClick={() =>this.getIDDelete()} data-target="#deleteMilktea">xóa</button>
+                </div>
+                <div className="col-md-4">
+                    <button className="btn btn-danger" data-toggle="modal" onClick={() =>this.getPrepare()} data-target="#prepare">Chi tiết</button>
                 </div>
             </div>
         )
@@ -109,6 +116,9 @@ const mapStateToProps = (state) =>{
         },
         updateMilkTea : (id,name,price,picture)=>{
             dispatch(actions.actUpdateMilkTea(id,name,price,picture));
+        },
+        getAllPrepareMilkTea : (id)=>{
+          dispatch(actions.getAllPrepareMilkTea(id));
         }
     }
   }

@@ -14,3 +14,4 @@ export const DELETE_MILKTEA = "DELETE_MILKTEA";
 export const UPDATE_MILKTEA = "UPDATE_MILKTEA";
 
 export const ADD_BILL = "ADD_BILL";
+export const SHOW_PREPARE = "SHOW_PREPARE";

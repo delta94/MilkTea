@@ -31,6 +31,12 @@ export const updateMilkTea = (data) =>{
       data
     }
 }
+export const prepare = (data) =>{
+  return {
+    type: Types.SHOW_PREPARE,
+    data
+  }
+}
 export const actGetAllMilkTea = () =>{
     return (dispatch) => {
       return CallApi('Select_All_MilkTea', 'GET').then(res =>{
@@ -92,6 +98,20 @@ export const actUpdateMilkTea = (id,name,price,picture) =>{
       }
       else{
         dispatch(updateMilkTea(res.data));
+      }
+    });
+  }
+}
+export const getAllPrepareMilkTea = (id) =>{
+  return (dispatch) => {
+    return CallApi('Select_Material_Of_MilkTea', 'POST',{
+      "_ID": id
+    }).then(res =>{
+      if(res.data.length <= 0){
+        dispatch(getAllMilkTeaErr(res.data));
+      }
+      else{
+        dispatch(prepare(res.data));
       }
     });
   }

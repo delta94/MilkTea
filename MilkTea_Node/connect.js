@@ -1,7 +1,7 @@
 const config = {
-    user: 'TNhi',
+    user: 'sa',
     password: '123456',
-    server: '172.16.0.101', 
+    server: 'localhost', 
     database: 'MilkTea',
  
     options: {

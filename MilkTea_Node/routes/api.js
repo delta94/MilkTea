@@ -40,5 +40,6 @@ router.post('/Select_Material_Of_MilkTea', milktea.Select_Material_Of_MilkTea);
 router.get('/Select_Bill', bill.Select_Bill);
 router.post('/Select_Detail_Bill', bill.Select_Detail_Bill);
 router.post('/Insert_Product', product.Insert_Product);
+router.post('/Delete_Product', product.Delete_Product);
 
 module.exports = router;

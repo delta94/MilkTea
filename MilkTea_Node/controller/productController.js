@@ -45,6 +45,28 @@ exports.Insert_Product = function(req, res, next){
   });
   
 }
+exports.Delete_Product = function(req, res, next){
+  new sql.ConnectionPool(config).connect().then(pool => {
+    return pool.request().query(`
+    DECLARE @RC int
+    EXECUTE @RC = [dbo].[Delete_Product] 
+    @_ID = ${req.body._ID}
+    `)
+  }).then(result => {
+    let rows = result.recordset
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.status(200).send({code: 'ok', value: 
+      {
+          _ID : req.body._ID
+      }
+    });
+    sql.close();
+  }).catch(err => {
+    res.status(200).send({ message: err})
+    sql.close();
+  });
+  
+}
 exports.Select_All_Meterial = function(req, res, next){
     new sql.ConnectionPool(config).connect().then(pool => {
       return pool.request().query(`DECLARE @RC int 

@@ -65,7 +65,8 @@ export const actDeleteProduct = (id) =>{
     return CallApi('Delete_Product', 'POST',{
       "_ID": id
     }).then(res =>{
-      if(res.data.length <= 0){
+        console.log(res)
+      if(res.data.message !== undefined){
         dispatch(getAllProductErr(res.data));
       }
       else{

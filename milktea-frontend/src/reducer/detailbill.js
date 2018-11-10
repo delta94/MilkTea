@@ -15,22 +15,19 @@ const bill = (state = initialState, action) => {
     let json;
 
     switch (action.type){
-        case Types.SELECT_BILL:
+        case Types.SELECT_DETAIL_BILL:
             json = {
                 code : 'ok',
                 data : action.data
             }
             state = json;
             return state;
-        case Types.SELECT_BILL_ERR:
+        case Types.SELECT_DETAIL_BILL_ERR:
             json = {
                 code : 'err',
                 data : action.message
             }
             state = json;
-            return state;
-        case Types.ADD_BILL:
-            state = [...state,action.data];
             return state;
         default: 
             return state;

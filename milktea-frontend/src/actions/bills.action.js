@@ -31,12 +31,37 @@ export const updateMaterial = (data) =>{
     data
   }
 }
-export const getAllBill = (data) =>{
+export const insertBill = (data) =>{
   return {
     type: Types.ADD_BILL,
     data
   }
 }
+export const getAllBill = (data) =>{
+  return {
+    type: Types.SELECT_BILL,
+    data
+  }
+}
+export const getAllBillErr = (message) =>{
+  return {
+    type: Types.SELECT_BILL_ERR,
+    message
+  }
+}
+export const getAllDetailBill = (data) =>{
+  return {
+    type: Types.SELECT_DETAIL_BILL,
+    data
+  }
+}
+export const getAllDetailBillErr = (message) =>{
+  return {
+    type: Types.SELECT_DETAIL_BILL_ERR,
+    message
+  }
+}
+
 export const actGetAllMeterial = () =>{
     return (dispatch) => {
       return CallApi('Select_All_Meterial', 'GET').then(res =>{
@@ -118,13 +143,39 @@ export const actInsertBill = (total,date,address,phone,listmilktea) =>{
             "_ID" : id
           }).then(res =>{
             if(res.data.length <= 0){
-              dispatch(getAllMeterialErr(res.data));
+              dispatch(getAllBillErr(res.data));
             }
             else{
-              dispatch(getAllBill(res.data));
+              dispatch(insertBill(res.data));
             }
           });
         });
+      }
+    });
+  }
+}
+export const actGetBill = () =>{
+  return (dispatch) => {
+    return CallApi('Select_Bill', 'GET').then(res =>{
+      if(res.data.length <= 0){
+        dispatch(getAllBillErr(res.data));
+      }
+      else{
+        dispatch(getAllBill(res.data));
+      }
+    });
+  }
+}
+export const actGetDetailBill = (id) =>{
+  return (dispatch) => {
+    return CallApi('Select_Detail_Bill', 'POST',{
+      "_ID" : id
+    }).then(res =>{
+      if(res.data.length <= 0){
+        dispatch(getAllDetailBillErr(res.data));
+      }
+      else{
+        dispatch(getAllDetailBill(res.data));
       }
     });
   }

@@ -71,3 +71,41 @@ exports.Insert_Detail_Bill = function(req, res, next){
     });
     
 }
+exports.Select_Bill = function(req, res, next){
+  console.log(req.body)
+    new sql.ConnectionPool(config).connect().then(pool => {
+      return pool.request().query(`
+      DECLARE @RC int
+      EXECUTE @RC = [dbo].[Select_Bill_No_Pay] 
+      `)
+    }).then(result => {
+      let rows = result.recordset
+      res.setHeader('Access-Control-Allow-Origin', '*')
+      res.status(200).json(rows);
+      sql.close();
+    }).catch(err => {
+      res.status(200).send({ message: err})
+      sql.close();
+    });
+    
+}
+exports.Select_Detail_Bill = function(req, res, next){
+  console.log(req.body)
+    new sql.ConnectionPool(config).connect().then(pool => {
+      return pool.request().query(`
+      DECLARE @RC int
+      DECLARE @_ID int
+      EXECUTE @RC = [dbo].[get_milktea_by_bill] 
+        @_ID = ${req.body._ID}
+      `)
+    }).then(result => {
+      let rows = result.recordset
+      res.setHeader('Access-Control-Allow-Origin', '*')
+      res.status(200).json(rows);
+      sql.close();
+    }).catch(err => {
+      res.status(200).send({ message: err})
+      sql.close();
+    });
+    
+}

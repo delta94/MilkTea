@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import * as actions from './../../actions/milktea.actions';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 class PrepareMilkTea extends Component {
 constructor(props){
     super(props);
@@ -72,12 +72,6 @@ const mapStateToProps = (state) =>{
       prepare: state.prepare
     }
   }
-  const mapDispatchToProps = (dispatch, props) =>{
-    return{
-        getAllPrepareMilkTea : (id)=>{
-            dispatch(actions.getAllPrepareMilkTea(id));
-        }
-    }
-  }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PrepareMilkTea);
+
+export default connect(mapStateToProps, null)(PrepareMilkTea);

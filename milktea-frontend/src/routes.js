@@ -2,12 +2,11 @@ import React from "react";
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Menu from './pages/Menu';
-import Order from './pages/OrderMilkTea';
+import Product from './components/product/product';
 import SignUp from './components/User/SignUp';
 import Login from './components/User/Login';
 import Meterial from './components/Bills/Meterial';
 import Bills from './components/Bills/Bills';
-import Prepare from './components/MilkTea/PrepareMilkTea'
 
 const routes = [
   {
@@ -20,11 +19,11 @@ const routes = [
     exact: false,
     main: () => <Menu />
   },
-  // {
-  //   path: "/Order",
-  //   exact: true,
-  //   main: () => <Order />
-  // },
+  {
+    path: "/Product",
+    exact: false,
+    main: () => <Product />
+  },
   {
     path: "/SignUp",
     exact: false,
@@ -39,11 +38,6 @@ const routes = [
     path: "/Bills",
     exact: false,
     main: () => <Bills />
-  },
-  {
-    path: "/PrepareMilktea",
-    exact: false,
-    main: () => <Prepare />
   },
   {
     path: "/Manager",

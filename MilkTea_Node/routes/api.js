@@ -30,7 +30,6 @@ router.get('/Select_All_Meterial', product.Select_All_Meterial);
 router.post('/Insert_Meterial', product.Insert_Meterial);
 router.post('/Delete_Meterial', product.Delete_Meterial);
 router.post('/Update_Meterial', product.Update_Meterial);
-
 router.get('/Select_All_MilkTea', milktea.Select_All_MilkTea);
 router.post('/Insert_MilkTea', upload.single('recfile'), milktea.Insert_MilkTea);
 router.post('/Delete_MilkTea', milktea.Delete_MilkTea);
@@ -38,6 +37,8 @@ router.post('/Update_MilkTea', milktea.Update_MilkTea);
 router.post('/Insert_Bill', bill.Insert_Bill);
 router.post('/Insert_Detail_Bill', bill.Insert_Detail_Bill);
 router.post('/Select_Material_Of_MilkTea', milktea.Select_Material_Of_MilkTea);
-
+router.get('/Select_Bill', bill.Select_Bill);
+router.post('/Select_Detail_Bill', bill.Select_Detail_Bill);
+router.post('/Insert_Product', product.Insert_Product);
 
 module.exports = router;

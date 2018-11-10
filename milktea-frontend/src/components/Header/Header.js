@@ -49,6 +49,11 @@ class Header extends Component {
         name : "Quản lý",
         to : "/Manager",
         exact : false
+      },
+      {
+        name : "Hóa Đơn",
+        to : "/Bills",
+        exact : false
       }]
     }
     return menu

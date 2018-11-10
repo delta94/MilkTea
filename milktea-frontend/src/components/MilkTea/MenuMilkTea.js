@@ -127,7 +127,7 @@ class MenuMilkTea extends Component {
     this.props.insertMilkTea(this.state.name,this.state.price,this.state.picture)
   }
   order = ()=>{
-    this.props.insertBill(this.state.totalprice, this.state.date, this.state.address,this.state.phone)
+    this.props.insertBill(this.state.totalprice, this.state.date, this.state.address,this.state.phone, this.state.listmilktea)
   }
   render() {
     return (
@@ -231,8 +231,8 @@ const mapDispatchToProps = (dispatch, props) =>{
       deleteMilkTea : (id)=>{
           dispatch(actions.actDeleteMilkTea(id));
       },
-      insertBill : (total,date,address,phone)=>{
-        dispatch(actionbill.actInsertBill(total,date,address,phone));
+      insertBill : (total,date,address,phone,listmilktea)=>{
+        dispatch(actionbill.actInsertBill(total,date,address,phone,listmilktea));
     },
   }
 }

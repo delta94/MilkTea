@@ -151,7 +151,7 @@ onSelect = (event)=>{
       <div className="material_iteam">
         <span>Số lượng:</span>
         <input className="txt_add" type="text" value={this.state.Count} onChange={this.onChangeCount} />
-        <button className="btn_material btn-danger" type="button" onClick={this.Update_Material}>Sửa</button>
+        <button className="btn_material btn-danger" type="button" data-toggle="modal" data-target="#myModal" onClick={this.Update_Material}>Sửa</button>
       </div>
     </form>
   </div>

@@ -35,8 +35,7 @@ router.get('/Select_All_MilkTea', milktea.Select_All_MilkTea);
 router.post('/Insert_MilkTea', upload.single('recfile'), milktea.Insert_MilkTea);
 router.post('/Delete_MilkTea', milktea.Delete_MilkTea);
 router.post('/Update_MilkTea', milktea.Update_MilkTea);
-
 router.post('/Insert_Bill', bill.Insert_Bill);
-
+router.post('/Insert_Detail_Bill', bill.Insert_Detail_Bill);
 
 module.exports = router;

@@ -548,3 +548,8 @@ i.fa.fa-plus.add-milktea {
 .add-milktea {
   position: relative;
 }
+.navbar-light .navbar-nav .nav-link {
+  color: white;
+  font-size: 20px;
+
+}

@@ -81,9 +81,7 @@ class MenuHome extends Component {
               <div className="overlay">
               </div>
             </div>
-            <div className="button">
-              <button className="btn btn-success">ReadMore</button>
-            </div>
+            
           </div>
         </div>
         <div className="img-product col-md-4">
@@ -95,9 +93,7 @@ class MenuHome extends Component {
               <div className="overlay">
               </div>
             </div>
-            <div className="button">
-              <button className="btn btn-success">ReadMore</button>
-            </div>
+            
           </div>
         </div>
         <div className="img-product col-md-4">
@@ -109,9 +105,7 @@ class MenuHome extends Component {
               <div className="overlay">
               </div>
             </div>
-            <div className="button">
-              <button className="btn btn-success">ReadMore</button>
-            </div>
+            
           </div>
         </div>
       </div>
@@ -292,43 +286,7 @@ class MenuHome extends Component {
       </div>
     </div>
   </section>
-  <section className="order">
-    <div className="order_content container">
-      <h1>Đặt hàng</h1>
-      <div className="line" />
-      <div className="row">
-        <div className="col col-md-6">
-          <form name="#" method="POST" value>
-            <input className="text-order" type="text" name="#" placeholder="Họ tên" />
-            <input className="text-order" type="number" name="#" placeholder="Số ĐT" />
-            <input className="text-order" type="text" name="#" placeholder="Địa chỉ" />
-            <select className="order-txt" name="#">
-              <option>Chọn loại trà</option>
-              <option>Trà sữa nhà làm</option>
-              <option>Trà thạch</option>
-              <option>Trà sữa bọt tuyết </option>
-              <option>Trà sữa bánh plan</option>
-              <option>Trà sữa thái xanh</option>
-              <option>Trà sữa đường đen</option>
-              <option>Trà sữa kem tuyết</option>
-              <option>Trà sữa củ năng</option>
-              <option>Trà sữa gạo nâu</option>
-              <option>Trà sữa hoa lục trà</option>
-            </select>
-            <select className="order-txt" name="#">
-              <option>Kích cỡ</option>
-              <option>Lớn</option>
-              <option>Nhỏ</option>
-              <option>Vừa</option>
-            </select>
-          </form>
-        </div>
-        <div className="col col-md-6">
-          <img src="./img/p5.jpg" />
-        </div>
-      </div>
-    </div>
-  </section>
+  
   <section className="event">
     <div className="event_content">
       <h1>Khách hàng thân thiết</h1>

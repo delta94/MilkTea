@@ -96,20 +96,35 @@ export const actUpdateMeterial = (id,name,price,count) =>{
     });
   }
 }
-export const actInsertBill = (total,date,address,phone) =>{
+export const actInsertBill = (total,date,address,phone,listmilktea) =>{
+  console.log(listmilktea)
   return (dispatch) => {
     return CallApi('Insert_Bill', 'POST',{
       "_PriceTotal": total,
-      "_Date": date,
+      "_Date": new Date(),
       "_IDcustomer": null,
       "_Address": address,
       "_Phone": phone,
     }).then(res =>{
+      console.log(res.data)
       if(res.data.length <= 0){
         dispatch(getAllMeterialErr(res.data));
       }
-      else{
-        dispatch(getAllBill(res.data));
+      else {
+        let id = res.data.value._ID
+        listmilktea.forEach(e => {
+          CallApi('Insert_Detail_Bill', 'POST',{
+            "_listmilktea": e,
+            "_ID" : id
+          }).then(res =>{
+            if(res.data.length <= 0){
+              dispatch(getAllMeterialErr(res.data));
+            }
+            else{
+              dispatch(getAllBill(res.data));
+            }
+          });
+        });
       }
     });
   }

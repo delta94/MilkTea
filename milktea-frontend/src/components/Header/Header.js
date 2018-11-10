@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {Link, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
-import * as actions from './../../actions/info.action';
 import './Header.css';
 
 let menus = [
@@ -13,16 +12,6 @@ let menus = [
   {
     name : "Thức uống",
     to : "/MilkTea",
-    exact : false
-  },
-  {
-    name : "Đặt hàng",
-    to : "/Order",
-    exact : false
-  },
-  {
-    name : "Quản lý",
-    to : "/Manager",
     exact : false
   }
 ];
@@ -54,15 +43,15 @@ class Header extends Component {
         user : {}
     }
   }
-  addforManager = () =>{
+  addforManager = (menu) =>{
     if(this.props.user.code !== undefined){
-      menus = [...menus, {
+      menu = [...menu, {
         name : "Quản lý",
         to : "/Manager",
         exact : false
       }]
-      console.log(menus)
-  }
+    }
+    return menu
   }
   componentWillReceiveProps(nextProps){
     if(nextProps.user.code === 'ok'){
@@ -73,10 +62,8 @@ class Header extends Component {
     }
     
   }
-  
   showUser = () =>{
     if(this.state.haveUser === true){
-      this.addforManager()
       return (
         <div>
           {this.state.user.data.Name}
@@ -108,7 +95,7 @@ class Header extends Component {
       <section className="head">
         <div className="menu">
           <nav className="navbar navbar-expand-md navbar-light">
-            <a className="write navbar-brand" href="#">Thành Nhi</a>
+            <a className="write navbar-brand" href="">Quán trà sữa Thành Nhi</a>
             <button className="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon" />
             </button>
@@ -130,7 +117,8 @@ class Header extends Component {
   showMenu = (menus)=>{
     var result = null;
     if(menus.length > 0){
-      result = menus.map((menu, index)=>{
+      let menu = this.addforManager(menus)
+      result = menu.map((menu, index)=>{
         return (
           <MenuLink
             key={index}
@@ -150,12 +138,6 @@ const mapStateToProps = (state) =>{
     user : state.user
   }
 }
-const mapDispatchToProps = (dispatch, props) =>{
-  return{
-    login : (id) =>{
-      dispatch(actions.actLoginRequest(id));
-    }
-  }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+
+export default connect(mapStateToProps, null)(Header);

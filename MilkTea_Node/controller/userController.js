@@ -26,5 +26,26 @@ exports.LoginA = function(req, res, next){
   config.user = req.body._UserName
   config.password = req.body._Password
   console.log(config);
-  res.status(200).json({code: 'ok'});
+  res.status(200).json({
+    code: 'ok',
+    value:[{
+      name : "Trang chủ",
+      to : "/",
+      exact : true
+    },
+    {
+      name : "Thức uống",
+      to : "/MilkTea",
+      exact : false
+    },
+    {
+      name : "Đặt hàng",
+      to : "/Order",
+      exact : false
+    },
+    {
+      name : "Quản lý",
+      to : "/Manager",
+      exact : false
+    }]});
 }

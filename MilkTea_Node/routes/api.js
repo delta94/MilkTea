@@ -41,5 +41,7 @@ router.get('/Select_Bill', bill.Select_Bill);
 router.post('/Select_Detail_Bill', bill.Select_Detail_Bill);
 router.post('/Insert_Product', product.Insert_Product);
 router.post('/Delete_Product', product.Delete_Product);
+router.post('/Update_Product', product.Update_Product);
+router.post('/Insert_WareHouse', product.Insert_WareHouse);
 
 module.exports = router;

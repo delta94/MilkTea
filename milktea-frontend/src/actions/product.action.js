@@ -60,12 +60,21 @@ export const actInsertProduct = (name, address, phone) =>{
     });
   }
 }
+export const actInsertWareHouse = (idproduct, idmaterial, count, price) =>{
+  return (dispatch) => {
+    return CallApi('Insert_WareHouse', 'POST',{
+      "_IDProduct": idproduct,
+      "_IDMaterial": idmaterial,
+      "_Count": count,
+      "_Price": price
+    })
+  }
+}
 export const actDeleteProduct = (id) =>{
   return (dispatch) => {
     return CallApi('Delete_Product', 'POST',{
       "_ID": id
     }).then(res =>{
-        console.log(res)
       if(res.data.message !== undefined){
         dispatch(getAllProductErr(res.data));
       }

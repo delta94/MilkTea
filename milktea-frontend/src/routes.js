@@ -2,7 +2,7 @@ import React from "react";
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Menu from './pages/Menu';
-import Product from './components/product/product';
+import Product from './components/Product/Product';
 import SignUp from './components/User/SignUp';
 import Login from './components/User/Login';
 import Meterial from './components/Bills/Meterial';

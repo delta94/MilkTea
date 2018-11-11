@@ -45,6 +45,37 @@ exports.Insert_Product = function(req, res, next){
   });
   
 }
+exports.Insert_WareHouse = function(req, res, next){
+  new sql.ConnectionPool(config).connect().then(pool => {
+    return pool.request().query(`DECLARE @RC int
+    DECLARE @_IDProduct int
+    DECLARE @_IDMaterial int
+    DECLARE @_Count int
+    DECLARE @_Price int
+        
+    EXECUTE @RC = [dbo].[Insert_WareHouse] 
+       @_IDProduct = ${req.body._IDProduct}
+      ,@_IDMaterial = ${req.body._IDMaterial}
+      ,@_Count = ${req.body._Count}
+      ,@_Price = ${req.body._Price}
+    `)
+  }).then(result => {
+    let rows = result.recordset
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.status(200).send({code: 'ok', value: 
+      {
+        _Name : req.body._Name, 
+        _Phone : req.body._Phone,
+        _Address : req.body._Address
+      }
+    });
+    sql.close();
+  }).catch(err => {
+    res.status(200).send({ message: err})
+    sql.close();
+  });
+  
+}
 exports.Delete_Product = function(req, res, next){
   new sql.ConnectionPool(config).connect().then(pool => {
     return pool.request().query(`
@@ -58,6 +89,37 @@ exports.Delete_Product = function(req, res, next){
     res.status(200).send({code: 'ok', value: 
       {
           _ID : req.body._ID
+      }
+    });
+    sql.close();
+  }).catch(err => {
+    res.status(200).send({ message: err})
+    sql.close();
+  });
+  
+}
+exports.Update_Product = function(req, res, next){
+  new sql.ConnectionPool(config).connect().then(pool => {
+    return pool.request().query(`DECLARE @RC int
+    DECLARE @_ID int
+    DECLARE @_Name nvarchar(50)
+    DECLARE @_Price int
+    DECLARE @_Count int    
+    EXECUTE @RC = [dbo].[Update_Product] 
+       @_ID = ${req.body._ID}
+      ,@_Name = '${req.body._Name}'
+      ,@_Phone = '${req.body._Phone}'
+      ,@_Address = '${req.body._Address}'
+    `) 
+  }).then(result => {
+    let rows = result.recordset
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.status(200).send({code: 'ok', value: 
+      {
+          _ID : req.body._ID,
+          _Name : req.body._Name, 
+          _Phone : req.body._Phone,
+          _Address : req.body._Address
       }
     });
     sql.close();

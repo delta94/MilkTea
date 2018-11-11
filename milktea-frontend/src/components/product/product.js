@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import * as actions from './../../actions/product.action';
+import WareHouse from './WareHouse'
+import * as actions from '../../actions/product.action';
 
 class Product extends Component {
     constructor(props){
@@ -12,7 +13,8 @@ class Product extends Component {
             Name: '',
             Address: '',
             Phone:'',
-            ID: null
+            ID: null,
+            idproduct: null
         }
     }
     componentWillMount(){
@@ -58,9 +60,11 @@ class Product extends Component {
                     <td>{item.Phone}</td>
                     <td>{item.Address}</td>
                     <td>
-                        <button className="btn btn-warning">Sửa</button>
+                        <button className="btn btn-warning" onClick={()=>this.edit(item)}>Sửa</button>
                         <button className="btn btn-danger" data-target="#deleteProduct" data-toggle="modal"
                          onClick={()=>this.setState({ID : item.ID})}>xóa</button>
+                         <button className="btn btn-danger" data-target="#insertWarehouse" data-toggle="modal"
+                         onClick={()=>this.setState({idproduct : item.ID})}>Nhập hàng</button>
                     </td>
                 </tr>
               )
@@ -70,6 +74,15 @@ class Product extends Component {
           resuilt = <tr></tr>
         }
         return resuilt
+      }
+      edit = (item) =>{
+        this.setState({
+            isAdd : true,
+            ID : item.ID,
+            Name : item.Name,
+            Phone : item.Phone,
+            Address : item.Address
+        })
       }
       classTable = () =>{
           if(this.state.isAdd === true){
@@ -86,15 +99,15 @@ class Product extends Component {
                     <form>
                         <div className="form-group">
                             <label >Tên</label>
-                            <input type="text" className="form-control" onChange={this.onChangeName} />
+                            <input type="text" className="form-control" value={this.state.Name} onChange={this.onChangeName} />
                         </div>
                         <div className="form-group">
                             <label >Số điện thoại</label>
-                            <input type="text" className="form-control" onChange={this.onChangePhone}  />
+                            <input type="text" className="form-control" value={this.state.Phone} onChange={this.onChangePhone}  />
                         </div>
                         <div className="form-group">
                             <label >Địa chỉ</label>
-                            <input type="text" className="form-control" onChange={this.onChangeAddress}  />
+                            <input type="text" className="form-control" value={this.state.Address} onChange={this.onChangeAddress}  />
                         </div>
                         <button className="btn btn-primary" onClick={()=>this.insertProduct()}>thêm</button>
                     </form>
@@ -107,13 +120,17 @@ class Product extends Component {
           }
       }
       insertProduct = () =>{
-          this.props.insertProduct(this.state.Name, this.state.Address, this.state.Phone)
+          if(this.state.ID === null){
+            this.props.insertProduct(this.state.Name, this.state.Address, this.state.Phone)
+          }
+          else{
+            this.props.updateProduct(this.state.ID,this.state.Name, this.state.Address, this.state.Phone)
+          }
       }
       deleteProduct = () =>{
         this.props.deleteProduct(this.state.ID)
     }
   render() {
-      console.log(this.props.product)
     return (
       <div className="product">
         <div className="row">
@@ -124,7 +141,7 @@ class Product extends Component {
                         <th scope="col">Tên nhà cung cấp</th>
                         <th scope="col">Số điện thoại</th>
                         <th scope="col">Địa chỉ</th>
-                        <th><button className="btn btn-success" onClick={()=>this.setState({isAdd : !this.state.isAdd})}>Thêm</button></th>
+                        <th><button className="btn btn-success" onClick={()=>this.setState({isAdd : !this.state.isAdd, ID : null})}>Thêm</button></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -150,6 +167,21 @@ class Product extends Component {
             </div>
           </div>
         </div>
+        <div className="modal fade" id="insertWarehouse" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">Thêm nguyên liệu</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-footer">
+                <WareHouse idproduct={this.state.idproduct} ></WareHouse>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
@@ -170,6 +202,9 @@ const mapStateToProps = (state) =>{
         },
         deleteProduct : (id)=>{
             dispatch(actions.actDeleteProduct(id));
+        },
+        updateProduct : (id,name,price,count)=>{
+            dispatch(actions.actUpdateProduct(id,name,price,count));
         }
     }
   }

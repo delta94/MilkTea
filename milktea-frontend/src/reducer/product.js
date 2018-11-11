@@ -33,12 +33,11 @@ const milktea = (state = initialState, action) => {
             state = json;
             return state;
         case Types.DELETE_PRODUCT:
-        console.log(action.data)
             index = findIndex(state.data, action.data.value._ID)
             state.data.splice(index,1)
             return state;
         case Types.UPDATE_PRODUCT:
-            index = findIndex(state.data, action.data.value.ID)
+            index = findIndex(state.data, action.data.value._ID)
             state.data[index] = action.data.value
             return state;
         default: 

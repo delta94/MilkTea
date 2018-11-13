@@ -34,3 +34,33 @@ exports.LoginA = function(req, res, next){
   })
   
 }
+exports.SignUp = function(req, res, next){
+    new sql.ConnectionPool(config).connect().then(pool => {
+      return pool.request().query(`DECLARE @RC int
+      DECLARE @_Name nvarchar(50)
+      DECLARE @_Phone char(15)
+      DECLARE @_Address nvarchar(50)
+      DECLARE @_User nvarchar(50)
+      DECLARE @_Pass nvarchar(50)
+      DECLARE @_Login nvarchar(50)
+            
+      EXECUTE @RC = [dbo].[SignUp] 
+         @_Name = '${req.body._Name}'
+        ,@_Phone = '${req.body._Phone}'
+        ,@_Address = '${req.body._Address}'
+        ,@_User = '${req.body._User}'
+        ,@_Pass = '${req.body._Pass}'
+        ,@_Login = 'tuyetnhi'
+      
+      `)
+    }).then(result => {
+      let rows = result.recordset
+      res.setHeader('Access-Control-Allow-Origin', '*')
+      res.status(200).json(rows);
+      sql.close();
+    }).catch(err => {
+      res.status(200).send({ message: "${err}"})
+      sql.close();
+    });
+    
+}

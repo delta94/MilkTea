@@ -43,5 +43,6 @@ router.post('/Insert_Product', product.Insert_Product);
 router.post('/Delete_Product', product.Delete_Product);
 router.post('/Update_Product', product.Update_Product);
 router.post('/Insert_WareHouse', product.Insert_WareHouse);
+router.post('/SignUp', user.SignUp);
 
 module.exports = router;

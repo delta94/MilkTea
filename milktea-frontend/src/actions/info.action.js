@@ -15,7 +15,7 @@ export const loginErr = (message) =>{
 }
 export const actLoginRequest = (user, password) =>{
     return (dispatch) => {
-      return CallApi('loginA', 'POST', {_UserName : user, _Password: password}).then(res =>{
+      return CallApi('login', 'POST', {_UserName : user, _Password: password}).then(res =>{
         if(res.data.length <= 0){
           dispatch(loginErr(res.data));
         }
@@ -23,6 +23,20 @@ export const actLoginRequest = (user, password) =>{
           dispatch(login(res.data));
           console.log(res.data)
         }
+      });
+    }
+  }
+  export const actSignUp = (name, phone,address,user, password) =>{
+    return (dispatch) => {
+      return CallApi('SignUp', 'POST', 
+      {
+        _Name: name,
+        _Phone: phone,
+        _Address: address,
+        _User : user,
+        _Pass: password
+      }).then(res =>{
+        
       });
     }
   }

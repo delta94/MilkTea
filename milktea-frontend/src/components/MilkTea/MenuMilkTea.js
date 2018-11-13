@@ -108,6 +108,7 @@ class MenuMilkTea extends Component {
   }
   showMilkTea = () =>{
     let resuilt;
+    console.log(this.state.milktea)
     if(this.state.haveData === true){
       resuilt = this.state.milktea.map((item, index) => {
           return(

@@ -45,16 +45,18 @@ class Header extends Component {
   }
   addforManager = (menu) =>{
     if(this.props.user.code !== undefined){
-      menu = [...menu, {
-        name : "Quản lý",
-        to : "/Manager",
-        exact : false
-      },
-      {
-        name : "Hóa Đơn",
-        to : "/Bills",
-        exact : false
-      }]
+      if(this.props.user.data.Login === 'sa'){
+        menu = [...menu, {
+          name : "Quản lý",
+          to : "/Manager",
+          exact : false
+        },
+        {
+          name : "Hóa Đơn",
+          to : "/Bills",
+          exact : false
+        }]
+      }
     }
     return menu
   }

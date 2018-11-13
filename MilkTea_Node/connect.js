@@ -1,5 +1,5 @@
 const config = {
-    user: 'sa',
+    user: 'TNhi',
     password: '123456',
     server: 'localhost', 
     database: 'MilkTea',
